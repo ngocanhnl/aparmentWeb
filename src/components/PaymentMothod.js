@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Button, Container, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { MyInvoiceContext } from '../configs/Contexts';
+import { VNpayApis } from '../configs/Apis';
 
 const PaymentMethodPage = () => {
   const navigate = useNavigate();
@@ -16,9 +17,27 @@ const PaymentMethodPage = () => {
     navigate('/uyNhiem');
   };
 
-  const handleOnline = () => {
-    alert('Chuyển hướng đến thanh toán trực tuyến...');
-    // navigate('/online-payment', { state: { invoice } }); // nếu có sau này
+  const handleOnline = async() => {
+    console.log("Đã nhấn nút thanh toán");
+    try {
+      const response = await VNpayApis().get(`http://localhost:8080/create-payment`, {
+        params: {
+          amount: invoice.total
+        }
+      });
+      console.info("Response từ backend:", response.data);
+
+      const paymentUrl = response.data.paymentUrl;
+
+      if (paymentUrl) {
+        window.location.href = paymentUrl; // chuyển hướng sang VNPAY
+      } else {
+        alert('Không thể tạo URL thanh toán.');
+      }
+    } catch (error) {
+      console.error('Lỗi khi tạo thanh toán:', error);
+      alert('Đã xảy ra lỗi khi kết nối đến máy chủ.');
+    }
   };
 
   return (

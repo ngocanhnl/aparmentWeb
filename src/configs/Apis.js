@@ -14,6 +14,10 @@ export const endpoints = {
     'change-password': '/secure/changePassword',
     'invoiceList': '/secure/invoices',
     'updateImageBill': '/secure/updateBill',
+    'getCardList': '/secure/cards',
+    'survey': '/secure/survey',
+    'answerSurvey': '/secure/answer',
+    
 }
 
 export const authApis = () => axios.create({
@@ -21,6 +25,10 @@ export const authApis = () => axios.create({
     headers: {
         'Authorization': `Bearer ${cookie.load('token')}`
     }
+})
+
+export const VNpayApis = () => axios.create({
+    baseURL: 'http://localhost:8080/create-payment'
 })
 
 export default axios.create({

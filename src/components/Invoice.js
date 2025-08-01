@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Table, Button, Container, Spinner, Modal, Form } from 'react-bootstrap';
 import { MyInvoiceContext } from "../configs/Contexts";
-import Apis, { authApis, endpoints } from '../configs/Apis';
+import Apis, { authApis, endpoints, VNpayApis } from '../configs/Apis';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const InvoicePage = () => {
   const [invoices, setInvoices] = useState([]);
@@ -34,18 +35,37 @@ const InvoicePage = () => {
     setShowModal(true);
   };
 
-  const handleConfirmPayment = () => {
+  const handleConfirmPayment = async() => {
     if (!paymentMethod) {
       alert("Vui lòng chọn phương thức thanh toán!");
       return;
     }
 
     if(paymentMethod === "Ủy nhiệm chi") {
-      // Chuyển sang trang /uyNhiem khi chọn Ủy nhiệm chi
+
       navigate('/uyNhiem');
     } else {
-      // Xử lý các phương thức thanh toán khác ở đây
-      alert(`Đã chọn thanh toán hóa đơn "${selectedInvoice.name}" bằng phương thức: ${paymentMethod}`);
+   
+      try {
+            const response = await axios.get(`http://localhost:8080/ApartManagement/api/create-payment`, {
+              params: {
+                amount: invoice.total,
+                invoiceId: invoice.id
+              }
+            });
+            console.info("Response từ backend:", response.data);
+      
+            const paymentUrl = response.data.paymentUrl;
+      
+            if (paymentUrl) {
+              window.location.href = paymentUrl; // chuyển hướng sang VNPAY
+            } else {
+              alert('Không thể tạo URL thanh toán.');
+            }
+          } catch (error) {
+            console.error('Lỗi khi tạo thanh toán:', error);
+            alert('Đã xảy ra lỗi khi kết nối đến máy chủ.');
+          }
     }
 
     setShowModal(false);

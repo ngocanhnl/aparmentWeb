@@ -17,7 +17,11 @@ import ChangePassword from "./components/ChangePassword";
 import InvoicePage from "./components/Invoice";
 import PaymentMethodPage from "./components/PaymentMothod";
 import UploadTransferPage from "./components/UyNhiem";
-
+import VNPayReturnPage from './components/VnpayReturn';
+import CardList from './components/CardList';
+import VehicleCard from './components/VehicleCard';
+import SurveyDetail from './components/SurveyDetail';
+import SurveyList from './components/SurveyList';
 const App = () => {
   let [cartCounter, cartDispatch] = useReducer(MyCartReducer, 0);
   let [user, dispatch] = useReducer(MyUserReducer, null);
@@ -41,6 +45,11 @@ const App = () => {
                 <Route path="/invoices" element={<InvoicePage />} />
                 <Route path="/paymentMethod" element={<PaymentMethodPage />} />
                 <Route path="/uyNhiem" element={<UploadTransferPage />} />
+                <Route path="/payment-result" element={<VNPayReturnPage />} />
+                <Route path="/vehicle-card" element={<CardList />} />
+                <Route path="/vehicle-card-add" element={<VehicleCard />} />
+                <Route path="/survey-detail/:id" element={<SurveyDetail />} />
+                <Route path="/survey-list" element={<SurveyList />} />
               </Routes>
             </Container>
 
