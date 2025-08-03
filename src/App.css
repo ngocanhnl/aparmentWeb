@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+  z-index: 100;
+}
