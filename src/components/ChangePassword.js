@@ -38,14 +38,21 @@ const ChangePassword = () => {
         if (validate()) {
            try {
             setLoading(true);
-                const params = new URLSearchParams();
-                params.append("password", user2.password);
-                params.append("userId", user.userId);
-                console.info(params);
+             let formData = new FormData();
+                                
+            formData.append("password", user2.password);
+            formData.append("userId", user.userId);
+                
+            if (avatar.current.files.length > 0) {
+                formData.append("avatar", avatar.current.files[0]);
+            }
+                  
+            console.info(formData);
+                               
                  
-                let res = await authApis().post(endpoints['change-password'], params, {
+        let res = await authApis().post(endpoints['change-password'], formData, {
                     headers: {
-                       'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'multipart/form-data'
                     }
                 });
 
@@ -68,6 +75,12 @@ const ChangePassword = () => {
             {msg && <Alert variant="danger">{msg}</Alert>}
 
             <Form onSubmit={register}>
+                {(user.avatarUrl == null || user.avatarUrl == "") && <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Ảnh đại diện</Form.Label>
+                    <Form.Control type="file" ref={avatar} />
+                </Form.Group>}
+                
+
                 {info.map(i => <Form.Group key={i.field} className="mb-3" controlId={i.field}>
                     <Form.Label>{i.title}</Form.Label>
                     <Form.Control required value={user2[i.field]} onChange={e => setUser2({...user2, [i.field]: e.target.value})} type={i.type} placeholder={i.title} />

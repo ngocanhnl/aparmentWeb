@@ -45,6 +45,12 @@ const Header = () => {
                         <Link to="/invoices" className="nav-link text-info">
                            Hóa đơn
                         </Link>
+                        <Link to="/vehicle-card" className="nav-link text-info">
+                           The xe
+                        </Link>
+                        <Link to="/survey-list" className="nav-link text-info">
+                           Khảo sát
+                        </Link>
                         <Button variant="danger" onClick={() => dispatch({"type": "logout"})}>Đăng xuất</Button>
                     </>}
                     
