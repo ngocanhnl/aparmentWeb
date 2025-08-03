@@ -14,10 +14,15 @@ export const endpoints = {
     'change-password': '/secure/changePassword',
     'invoiceList': '/secure/invoices',
     'updateImageBill': '/secure/updateBill',
+
+    'complaints': '/secure/complaints',
+    'my-locker': '/secure/MyLocker',
+
     'getCardList': '/secure/cards',
     'survey': '/secure/survey',
     'answerSurvey': '/secure/answer',
     
+
 }
 
 export const authApis = () => axios.create({

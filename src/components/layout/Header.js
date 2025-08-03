@@ -89,6 +89,7 @@ const Header = () => {
                 </Navbar.Toggle>
 
                 <Navbar.Collapse id="basic-navbar-nav">
+
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">Trang chủ</Nav.Link>
                     </Nav>
@@ -112,6 +113,8 @@ const Header = () => {
                             >
                                 <NavDropdown.Item as={Link} to="/profile">Trang cá nhân</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/invoices">Hóa đơn</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/complaints">Khiếu nại</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/myLocker">Tủ đồ của tôi</NavDropdown.Item>                          
                                 <NavDropdown.Item as={Link} to="/vehicle-card">Thẻ xe</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/survey-list">Khảo sát</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -121,6 +124,8 @@ const Header = () => {
                             </NavDropdown>
                         )}
                     </Nav>
+
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
