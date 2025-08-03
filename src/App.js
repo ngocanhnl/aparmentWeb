@@ -4,10 +4,9 @@ import Footer from "./components/layout/Footer";
 import Home from "./components/Home";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from "react-bootstrap";
-import { MyCartContext, MyInvoiceContext, MyUserContext } from "./configs/Contexts";
+import { MyInvoiceContext, MyUserContext } from "./configs/Contexts";
 import { useReducer } from "react";
-import MyCartReducer from "./reducers/MyCartReducer";
-import Cart from "./components/Cart";
+
 import Register from "./components/Register";
 import Login from "./components/Login";
 import MyUserReducer from "./reducers/MyUserReducer";
@@ -27,21 +26,18 @@ import SurveyDetail from './components/SurveyDetail';
 import SurveyList from './components/SurveyList';
 
 const App = () => {
-  let [cartCounter, cartDispatch] = useReducer(MyCartReducer, 0);
   let [user, dispatch] = useReducer(MyUserReducer, null);
   let [invoice, dispatchInvoice] = useReducer(InvoiceReducer, null);
 
   return (
     <MyUserContext.Provider value={[user, dispatch]}>
-      <MyCartContext.Provider value={[cartCounter, cartDispatch]}>
         <MyInvoiceContext.Provider value={[invoice, dispatchInvoice]}>
           <BrowserRouter>
             <Header />
 
-            <Container>
+            <Container className="app-container">
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route path="/" element={<Home />} />  
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
@@ -65,7 +61,6 @@ const App = () => {
             <Footer />
           </BrowserRouter>
         </MyInvoiceContext.Provider>
-      </MyCartContext.Provider>
     </MyUserContext.Provider>
   );
 }
