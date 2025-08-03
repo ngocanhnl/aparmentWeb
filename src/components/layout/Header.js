@@ -31,7 +31,8 @@ const Header = () => {
                     </NavDropdown>
 
                     <Link to="/cart" className="nav-link text-success">Giỏ hàng <Badge bg="danger">{cartCounter}</Badge></Link>
-
+                    <Link to="/complaints" className="nav-link text-success">Khiếu nại </Link>
+                    <Link to="/myLocker" className="nav-link text-success">Tủ đồ của tôi </Link>
                     {user === null?<>
                         <Link to="/register" className="nav-link text-info">Đăng ký</Link>
                         <Link to="/login" className="nav-link text-info">Đăng nhập</Link>

@@ -14,6 +14,8 @@ export const endpoints = {
     'change-password': '/secure/changePassword',
     'invoiceList': '/secure/invoices',
     'updateImageBill': '/secure/updateBill',
+    'complaints': '/secure/complaints',
+    'my-locker': '/secure/MyLocker',
 }
 
 export const authApis = () => axios.create({

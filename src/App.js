@@ -17,6 +17,8 @@ import ChangePassword from "./components/ChangePassword";
 import InvoicePage from "./components/Invoice";
 import PaymentMethodPage from "./components/PaymentMothod";
 import UploadTransferPage from "./components/UyNhiem";
+import ComplaintForm from "./components/ComplaintForm";
+import MyLocker from "./components/myLocker";
 
 const App = () => {
   let [cartCounter, cartDispatch] = useReducer(MyCartReducer, 0);
@@ -41,6 +43,8 @@ const App = () => {
                 <Route path="/invoices" element={<InvoicePage />} />
                 <Route path="/paymentMethod" element={<PaymentMethodPage />} />
                 <Route path="/uyNhiem" element={<UploadTransferPage />} />
+                <Route path="/complaints" element={<ComplaintForm />} />
+                <Route path="/myLocker" element={<MyLocker />} />
               </Routes>
             </Container>
 
