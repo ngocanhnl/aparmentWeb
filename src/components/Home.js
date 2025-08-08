@@ -1,45 +1,4 @@
-// import { useContext, useEffect, useState } from "react";
-// import { Alert, Button, Card, Col, Form, Row, Spinner } from "react-bootstrap";
-// import Apis, { endpoints } from "../configs/Apis";
-// import { useSearchParams } from "react-router-dom";
-// import cookie from 'react-cookies'
-// import { MyCartContext } from "../configs/Contexts";
-// import MySpinner from "./layout/MySpinner";
 
-// const Home = () => {
-   
-//     const [loading, setLoading] = useState(true);
-//     const [q, setQ] = useState();
-//     const [page, setPage] = useState(1);
-//     const [params] = useSearchParams();
-   
-
-    
-
-//     useEffect(() => {
-//         setLoading(true);
-//         let timer = setTimeout(() => {
-//             if (page > 0)
-//                 loadProducts();
-//         }, 500);
-        
-//         return () => clearTimeout(timer);
-//     }, [page, q, params]);
-
-//     useEffect(() => {
-//         setPage(1);
-//     }, [q, params]);
-
-    
-
-//     return (
-//         <>
-          
-//         </>
-//     );
-// }
-
-// export default Home;
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { Alert, Button, Col, Container, Form, Image, Row } from "react-bootstrap";

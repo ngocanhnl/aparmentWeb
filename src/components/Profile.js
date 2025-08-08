@@ -40,7 +40,7 @@ const Profile = () => {
                 username: user.username,
                 avatarUrl: user.avatarUrl,
             });
-            setPreviewAvatar(user.avatarUrl); // nếu muốn preview ảnh cũ
+            setPreviewAvatar(user.avatarUrl); 
         }
     }, [user]);
 
@@ -60,14 +60,22 @@ const Profile = () => {
     
                     if (avatar.current.files.length > 0) {
                         formData.append("avatar", avatar.current.files[0]);
+                        
                     }
                     formData.append("username", user.username);
-                    console.info(formData);
+                    
                     let res = await authApis().post(endpoints['updateProfile'], formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
                     });
+                    console.info("res.data",res.data);
+                     dispatch({
+                        "type": "login",
+                        "payload": res.data
+                    });
+                    console.log("user2", user2);
+                    
     
                     if (res.status === 201)
                         nav("/profile");

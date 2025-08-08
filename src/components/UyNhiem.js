@@ -45,9 +45,9 @@ const UploadTransferPage = () => {
 
       console.log("Upload file:", file);
 
-      if (res.status === 201) {
+      if (res.status === 200) {
         setSuccess(true);
-        navigate("/profile");
+        navigate("/invoices");
       }
     } catch (error) {
       console.error("Error uploading file:", error);
