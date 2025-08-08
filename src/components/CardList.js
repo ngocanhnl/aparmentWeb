@@ -60,7 +60,7 @@ const CardList = () => {
                   <td>{card.relativeName}</td>
                   <td>{card.relativePhone}</td>
                   <td>
-                    {card.approved ? (
+                    {card.status == "approved" ? (
                       <Badge bg="success">Đã duyệt</Badge>
                     ) : (
                       <Badge bg="secondary">Chưa duyệt</Badge>
